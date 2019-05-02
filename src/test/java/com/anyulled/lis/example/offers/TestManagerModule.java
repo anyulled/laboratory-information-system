@@ -1,19 +1,21 @@
 package com.anyulled.lis.example.offers;
 
 import com.anyulled.lis.model.Container;
-import com.anyulled.lis.model.Order;
 import com.anyulled.lis.model.Patient;
+import com.anyulled.lis.model.RocheOrder;
 import com.anyulled.lis.model.Sample;
 import com.anyulled.lis.model.enums.SampleType;
-import com.anyulled.lis.service.impl.TestVisitorA;
-import com.anyulled.lis.service.impl.TestVisitorB;
+import com.anyulled.lis.service.Visitor;
+import com.anyulled.lis.service.impl.RocheTestVisitor;
 import com.anyulled.lis.service.legacy.GlucoseTest;
 import com.anyulled.lis.service.legacy.HemoglobinTest;
+import com.anyulled.lis.service.legacy.SodiumTest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.UUID;
 
 @Slf4j
 public class TestManagerModule {
@@ -36,22 +38,24 @@ public class TestManagerModule {
                 .sample(sample)
                 .build();
 
-        Order order = Order.builder()
-                .container(container)
-                .label("order")
-                .test(new GlucoseTest())
-                .test(new HemoglobinTest())
-                .test(new TestVisitorA())
-                .test(new TestVisitorB())
-                .build();
+        Visitor visitor = new RocheTestVisitor();
+        RocheOrder order = new RocheOrder(generateUuid());
+        order.setContainer(container);
+        order.getRocheTests().add(new GlucoseTest(generateUuid()));
+        order.getRocheTests().add(new SodiumTest(generateUuid()));
+        order.getRocheTests().add(new GlucoseTest(generateUuid()));
+        order.getRocheTests().add(new HemoglobinTest(generateUuid()));
+        order.accept(visitor);
 
-        order.getTests().forEach(laboratoryTest -> {
-            log.info("executing {} test", laboratoryTest.getTestType().toString().toLowerCase());
-            log.info("Test property a {}", laboratoryTest.getCommonPropertyA());
+        order.getRocheTests().forEach(laboratoryTest -> {
+            log.info("Test property b {}", laboratoryTest.getCommonPropertyA());
             log.info("Test property b {}", laboratoryTest.getCommonPropertyB());
-            log.info("Test property c {}", laboratoryTest.getCommonPropertyC());
-
+            log.info("Test Type {}", laboratoryTest.getTestType());
         });
 
+    }
+
+    private String generateUuid() {
+        return UUID.randomUUID().toString();
     }
 }
