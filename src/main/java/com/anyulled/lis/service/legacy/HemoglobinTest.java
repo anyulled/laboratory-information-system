@@ -1,34 +1,18 @@
 package com.anyulled.lis.service.legacy;
 
 import com.anyulled.lis.model.enums.TestType;
-import com.anyulled.lis.service.TestVisitable;
-import com.anyulled.lis.service.TestVisitor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.SuperBuilder;
-import lombok.extern.slf4j.Slf4j;
+import com.anyulled.lis.service.Visitor;
 
-@Data
-@EqualsAndHashCode(callSuper = true)
-@SuperBuilder
-@Slf4j
-public class HemoglobinTest extends LaboratoryTest implements TestVisitable {
+public class HemoglobinTest extends RocheTest {
 
-
-    public HemoglobinTest() {
+    public HemoglobinTest(String uuid) {
+        super(uuid);
         super.testType = TestType.HEMATOLOGY;
-        super.setCommonPropertyA("Hemoglobin property A");
-        super.setCommonPropertyB("Hemoglobin property B");
-        super.setCommonPropertyC("Hemoglobin property C");
+        super.commonPropertyA = "Hemoglobin";
+        super.commonPropertyB = "property";
     }
 
-    public void calculate() {
-        log.info("executing Hemoglobin legacy test");
-    }
-
-    @Override
-    public void accept(TestVisitor visitor) {
-        log.info("Extended Functionality");
-        visitor.visit(this);
+    public void accept(Visitor v) {
+        v.visit(this);
     }
 }
