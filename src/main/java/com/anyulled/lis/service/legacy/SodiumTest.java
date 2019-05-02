@@ -1,31 +1,31 @@
-package com.anyulled.lis.model.test;
+package com.anyulled.lis.service.legacy;
 
 import com.anyulled.lis.model.enums.TestType;
+import com.anyulled.lis.service.TestVisitable;
 import com.anyulled.lis.service.TestVisitor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @SuperBuilder
-public class HemoglobinTest extends LaboratoryTest {
+@Slf4j
+public class SodiumTest extends LaboratoryTest implements TestVisitable {
 
-    private Logger logger = LoggerFactory.getLogger(HemoglobinTest.class);
 
-    public HemoglobinTest() {
-        super.testType = TestType.HEMATOLOGY;
+    public SodiumTest() {
+        super.testType = TestType.BIOCHEMISTRY;
     }
 
-    @Override
     public void calculate() {
-        logger.info("executing Hemoglobin test");
+        log.info("executing sodium legacy test");
     }
 
     @Override
     public void accept(TestVisitor visitor) {
+        log.info("Extended Functionality");
         visitor.visit(this);
     }
 }
