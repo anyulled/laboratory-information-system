@@ -1,19 +1,18 @@
-package com.anyulled.lis.model.test;
+package com.anyulled.lis.service.legacy;
 
 import com.anyulled.lis.model.enums.TestType;
+import com.anyulled.lis.service.TestVisitable;
 import com.anyulled.lis.service.TestVisitor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @SuperBuilder
-public class GlucoseTest extends LaboratoryTest {
-
-    Logger logger = LoggerFactory.getLogger(GlucoseTest.class);
+@Slf4j
+public class GlucoseTest extends LaboratoryTest implements TestVisitable {
 
     private String specificPropertyA;
     private String specificPropertyB;
@@ -21,15 +20,18 @@ public class GlucoseTest extends LaboratoryTest {
 
     public GlucoseTest() {
         super.testType = TestType.HEMATOLOGY;
+        super.setCommonPropertyA("Glucose property A");
+        super.setCommonPropertyB("Glucose property B");
+        super.setCommonPropertyC("Glucose property C");
     }
 
-    @Override
     public void calculate() {
-        logger.info("executing glucose test");
+        log.info("executing glucose legacy test");
     }
 
     @Override
     public void accept(TestVisitor visitor) {
+        log.info("Extended Functionality");
         visitor.visit(this);
     }
 }

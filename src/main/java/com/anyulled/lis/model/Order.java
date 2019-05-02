@@ -1,19 +1,17 @@
 package com.anyulled.lis.model;
 
-import com.anyulled.lis.model.test.LaboratoryTest;
+import com.anyulled.lis.service.legacy.LaboratoryTest;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Singular;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
 @Data
 @Builder
+@Slf4j
 public class Order {
-
-    Logger logger = LoggerFactory.getLogger(Order.class);
 
     private String label;
     @Singular
