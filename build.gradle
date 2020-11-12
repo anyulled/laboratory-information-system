@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.3.5.RELEASE'
+        springBootVersion = '2.3.6.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -11,7 +11,7 @@ buildscript {
 }
 plugins {
     id 'idea'
-    id 'org.springframework.boot' version '2.3.5.RELEASE'
+    id 'org.springframework.boot' version '2.3.6.RELEASE'
     id 'java'
 }
 
