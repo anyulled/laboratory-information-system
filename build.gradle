@@ -53,7 +53,7 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testImplementation('org.junit.platform:junit-platform-runner:1.7.2')
-    testImplementation 'org.mockito:mockito-junit-jupiter:3.8.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.12.4'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
     compileOnly 'org.projectlombok:lombok:1.18.20'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
