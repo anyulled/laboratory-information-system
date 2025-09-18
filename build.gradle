@@ -55,7 +55,7 @@ dependencies {
     testImplementation('org.junit.platform:junit-platform-runner:1.13.4')
     testImplementation 'org.mockito:mockito-junit-jupiter:5.19.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.13.4'
-    compileOnly 'org.projectlombok:lombok:1.18.40'
-    annotationProcessor 'org.projectlombok:lombok:1.18.40'
+    compileOnly 'org.projectlombok:lombok:1.18.42'
+    annotationProcessor 'org.projectlombok:lombok:1.18.42'
     testCompile("org.assertj:assertj-core:3.27.4")
 }
